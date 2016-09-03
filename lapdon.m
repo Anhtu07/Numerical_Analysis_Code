@@ -4,8 +4,8 @@
 %       x0 la xap xi dau
 %       epsilon la sai so tuyet doi
 %       maxit la so phep lap toi da
-%output: k la so lap can thiet
-%        x la nghiem gan dung thu k
+%output:k la so lap can thiet
+%       x la nghiem gan dung thu k
 
 function [x, k] = lapdon (g, q, x0, epsilon, maxit)
   if nargin < 5,
@@ -20,6 +20,7 @@ function [x, k] = lapdon (g, q, x0, epsilon, maxit)
   while(abs(x-x0) >= delta && (k < maxit)),
     x0 = x;
     x = feval(g, x0);
+    disp(x);
     k = k+1;
     end;
 endfunction
