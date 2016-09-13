@@ -1,4 +1,5 @@
-function x = for_test (g)
-syms x;
-x = limit(g, x, 0)
+function x = for_test (a)
+syms t;
+f = t^2 -2;
+x = subs(f, a);
 endfunction

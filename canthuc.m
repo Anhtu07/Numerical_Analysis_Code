@@ -28,7 +28,7 @@ else,
   negative = false;
   if a < 0,
     negative = true;
-    a = -a
+    a = -a;
     end;
   if a < 2,
     x_0 = a + 1;

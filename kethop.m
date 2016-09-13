@@ -1,27 +1,33 @@
-## Copyright (C) 2016 Tu
-## 
-## This program is free software; you can redistribute it and/or modify it
-## under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 3 of the License, or
-## (at your option) any later version.
-## 
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
-## 
-## You should have received a copy of the GNU General Public License
-## along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-## -*- texinfo -*- 
-## @deftypefn {Function File} {@var{retval} =} kethop (@var{input1}, @var{input2})
-##
-## @seealso{}
-## @end deftypefn
-
-## Author: Tu <tu@tu-pc>
-## Created: 2016-09-04
-
-function [retval] = kethop (input1, input2)
-
+function [x, k] = kethop (f, a, b, epsilon, maxit)
+%input: f la ham can tim nghiem
+%       (a, b) la khoang phan ly nghiem
+%       epsilon la sai so tuyet doi
+%       maxit la so phep lap toi da
+%output:x la nghiem gan dung cua phuong trinh
+%       k la so phep lap can thiet
+if nargin < 5,
+  maxit = 1e+3;
+  end;
+if nargin < 4,
+  epsilon = 1e-3;
+  end;
+step = 0.0001;
+range = a:step:b;
+der1 = diff(f(range))./step;
+der2 = (der1(2)-der1(1))/step;
+disp(der2)
+der1(1)
+if f(a) * der2 > 0,
+  temp = b;
+  b = a;
+  a = temp;
+  end;
+count = 0;
+while abs(a-b) > epsilon,
+  b = -(f(b)/daoham1(f,b)) + b;
+  a = (a*f(b) - b*f(a))/(f(b)- f(a));
+  count = count + 1;
+  end;
+x = (a+b)/2;
+k = count;
 endfunction
